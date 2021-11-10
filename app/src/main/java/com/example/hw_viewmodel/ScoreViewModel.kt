@@ -33,10 +33,10 @@ class ScoreViewModel : ViewModel() {
      * The score will be decrease -2
      * but score should be more than 2
      */
-    private fun increaseScoreOne() {
+    private fun decreaseScoreByTwo() {
         if (_score >= 2 && _score != 0)
         _score = _score-2
-            //Toast.makeText(this, "Sorry, the product is not available right now", Toast.LENGTH_LONG).show()
+      //  Toast.makeText(this, "Sorry, the product is not available right now", Toast.LENGTH_LONG).show()
     }
 
     /*
