@@ -8,22 +8,20 @@ import android.view.ViewGroup
 import android.view.*
 import androidx.fragment.app.viewModels
 import com.example.hw_viewmodel.databinding.FragmentScoreBinding
-
+import  com.example.hw_viewmodel.ScoreViewModel
 
 
 class scoreFragment : Fragment() {
+
+    // Binding object instance with access to the views in the scoreFragment.xml layout
+    private var _binding: FragmentScoreBinding? = null
+    private val binding get() = _binding
 
     /*
     * create a reference object with ScoreViewModel type
     * the reference object from viewModels
      */
     private val viewModel: ScoreViewModel by viewModels()
-
-    private var score = 0
-
-
-    // Binding object instance with access to the views in the scoreFragment.xml layout
-    private lateinit var binding: FragmentScoreBinding
 
 
     // the first fun onCreate()
@@ -36,27 +34,27 @@ class scoreFragment : Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        binding = FragmentScoreBinding.inflate(inflater, container, false)
-        return binding.root
+        _binding = FragmentScoreBinding.inflate(inflater, container, false)
+        return _binding?.root
     }
 
 
     // the third and it's last one is onViewCreated()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             // Setup a click listener for the buttons.
-            binding.PlusOne.setOnClickListener { }
-            binding.MinusTwo.setOnClickListener {  }
-            binding.PlusFour.setOnClickListener { }
+            binding?.PlusOne?.setOnClickListener {  viewModel.increaseScoreByOne()
+                // UI updated
+                binding?.score?.text = getString(R.string.score, viewModel.score)
+            }
+            binding?.MinusTwo?.setOnClickListener { viewModel.decreaseScoreByTwo()
+                // UI updated
+                binding?.score?.text = getString(R.string.score, viewModel.score)
+            }
+            binding?.PlusFour?.setOnClickListener {  viewModel.increaseScoreByFour()
+                // UI updated
+                binding?.score?.text = getString(R.string.score, viewModel.score)
+            }
 
-            // UI updated
-            binding.score.text = getString(R.string.score, 0)
         }
 
-//    /**
-//     * Frees the binding object when the Fragment is destroyed.
-//     */
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        binding = null
-//    }
 }

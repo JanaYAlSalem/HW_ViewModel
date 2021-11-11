@@ -1,6 +1,5 @@
 package com.example.hw_viewmodel
 
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 
 class ScoreViewModel : ViewModel() {
@@ -24,8 +23,7 @@ class ScoreViewModel : ViewModel() {
     /*
      * The score will be increase +1
      */
-    private fun increaseScoreByOne() {
-
+     fun increaseScoreByOne() {
         _score = _score+1
     }
 
@@ -33,16 +31,15 @@ class ScoreViewModel : ViewModel() {
      * The score will be decrease -2
      * but score should be more than 2
      */
-    private fun decreaseScoreByTwo() {
+     fun decreaseScoreByTwo() {
         if (_score >= 2 && _score != 0)
         _score = _score-2
-      //  Toast.makeText(this, "Sorry, the product is not available right now", Toast.LENGTH_LONG).show()
     }
 
     /*
      * The score will be increase +4
      */
-    private fun increaseScoreByFour() {
-        _score = _score+4
+     fun increaseScoreByFour() {
+        _score += 4
     }
 }
