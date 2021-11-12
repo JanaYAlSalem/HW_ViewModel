@@ -1,5 +1,7 @@
 package com.example.hw_viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ScoreViewModel : ViewModel() {
@@ -10,13 +12,15 @@ class ScoreViewModel : ViewModel() {
     * we will return it in other object to be visible
     * to know a new object it's better to wite it like _objectName
      */
-    private var _score = 0
+    // private var _score = 0 cgange to:
+    private val _score = MutableLiveData(0)
 
 
     /*
     *  a new objects for return the base a private objects
      */
-    val score: Int
+    //val score: Int cgange to:
+    val score: LiveData<Int>
         get() = _score
 
 
@@ -24,7 +28,9 @@ class ScoreViewModel : ViewModel() {
      * The score will be increase +1
      */
      fun increaseScoreByOne() {
-        _score = _score+1
+      //  _score = _score+1 change to:
+        _score.value = _score.value?.plus(1)  // Or we can use directly [ _score.value?.inc() ]
+
     }
 
     /*
@@ -32,14 +38,16 @@ class ScoreViewModel : ViewModel() {
      * but score should be more than 2
      */
      fun decreaseScoreByTwo() {
-        if (_score >= 2 && _score != 0)
-        _score = _score-2
+        if (_score.value!! >= 2 && _score.value != 0)
+      //  _score = _score-2 change to:
+        _score.value = _score.value?.minus(2)
     }
 
     /*
      * The score will be increase +4
      */
      fun increaseScoreByFour() {
-        _score += 4
+        //_score += 4 change to:
+        _score.value = _score.value?.plus(4)
     }
 }

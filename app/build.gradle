@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    // add id
+    id 'kotlin-kapt'
+
 }
 
 android {
@@ -15,9 +18,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+// add to ways view
     buildFeatures {
-        viewBinding true
+        dataBinding = true
     }
 
     buildTypes {
